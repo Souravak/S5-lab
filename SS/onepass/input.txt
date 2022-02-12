@@ -1,0 +1,12 @@
+PGM	START	1000
+-	LDA	ALPHA
+-	END	-
+-	ADD	INCR
+-	END	-
+-	SUB	ONE
+-	STA	BETA
+ALPHA   WORD    1
+INCR    RESW    1
+ONE	WORD    1
+BETA    RESW    1
+-	END	-
