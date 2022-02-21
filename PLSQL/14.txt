@@ -1,0 +1,5 @@
+create table emplo(eid int, ename varchar(20), eaddress varchar(20), esalary int);
+
+@/home/csdb05/Ajay/PLSQL/14a.sql;
+@/home/csdb05/Ajay/PLSQL/14b.sql;
+@/home/csdb05/Ajay/PLSQL/14c.sql;

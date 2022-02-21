@@ -1,0 +1,12 @@
+create table account(accno int primary key, name varchar(20), accbal float);
+
+insert into account values(1,'Albin',50000);
+insert into account values(2,'Aravind',500001);
+insert into account values(3,'Jacob',25000);
+insert into account values(4,'Balu',30000);
+insert into account values(5,'Gokul',600);
+insert into account values(6,'Gokul',9999);
+
+select name,accbal,dc(accbal) as category from account;
+
+@/home/csdb05/Ajay/PLSQL/category.sql

@@ -1,0 +1,10 @@
+create table student1(rollno int primary key, name varchar(20), mark1 float, mark2 float);
+
+insert into students values(1,'Albin',4,8);
+insert into students values(2,'Aravind',8,9);
+insert into students values(3,'Jacob',3,5);
+insert into students values(4,'Balu',6,8);
+insert into students values(5,'Gokul',2,9);
+insert into students values(6,'Adithyan',1,2);
+
+@/home/csdb05/Ajay/PLSQL/report.sql

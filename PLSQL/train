@@ -1,0 +1,9 @@
+create table train(tno number(5) primary key, tname varchar(20), tdate date, destination varchar(15), seats number(3));
+
+insert into train values(1, 'Janashadabdi', '21-05-2022', 'Thrissur', 15);
+insert into train values(3, 'Kurla', '21-05-2022', 'Kannur', 45);
+insert into train values(3, 'Durantho', '21-05-2022', 'Kottayam', 30);
+insert into train values(5, 'Rajadhani', '21-05-2022', 'Delhi', 150);
+
+@/home/csdb05/Ajay/PLSQL/train.sql
+@/home/csdb05/Ajay/PLSQL/train2.sql

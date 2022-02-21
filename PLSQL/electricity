@@ -1,0 +1,8 @@
+create table users(cusno int, name varchar(20),past float, present float);
+
+insert into users values(1,'Acquin',100,210);
+insert into users values(2,'Adithyan',250,1000);
+insert into users values(3,'Aiswarya',720,800);
+insert into users values(4,'Aljoe',900,1650);
+
+@/home/csdb05/Ajay/PLSQL/electricity.sql

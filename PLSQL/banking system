@@ -1,0 +1,37 @@
+create table account(accno int primary key, name varchar(20), accbal number);
+
+insert into account values(1,'Albin',1500);
+insert into account values(2,'Aravind',2500);
+insert into account values(3,'Jacob',400);
+insert into account values(4,'Balu',900);
+insert into account values(5,'Gokul',600);
+insert into account values(6,'Gokul',10000);
+
+@/home/csdb05/Ajay/PLSQL/bankingsystem1.sql
+@/home/csdb05/Ajay/PLSQL/eg.sql
+
+set serveroutput on
+create function qwe(x in float) return varchar in msg varchar(20);
+begin
+	if x>=50000 then
+		msg:='Platinum';
+	elsif x>=10000 then
+		msg:='Gold';
+	else
+		msg:='Silver';
+	end if;
+END;
+select name,accbal,qwe(accbal) as category from account;
+/
+
+     ACCNO NAME 		    ACCBAL
+---------- -------------------- ----------
+	 1 Albin		      1300
+	 2 Aravind		      1400
+	 3 Jacob		       400
+	 4 Balu 		       797
+	 5 Gokul		       600
+
+@/home/csdb05/Ajay/PLSQL/bankingsystem2.sql
+update account set accbal = 15000 where accno = 2;
+update account set accbal = 3545 where accno = 3;

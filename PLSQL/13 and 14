@@ -1,0 +1,128 @@
+13)
+
+a)
+set serveroutput on
+create sequence train_seqe;
+create or replace trigger train_ins
+before
+insert on train for each row
+begin
+      select train_seqe.nextval into :new.tno from dual;
+end;
+/   
+b)
+set serveroutput on;
+accept x char prompt '1.reserve 2.cancel: ';
+declare 
+        choice  varchar(2);
+        tseat number(3);
+        trainno number(5);
+        no number(4);
+begin 
+      choice :=&x;
+      trainno:=&trainno;
+      no :=&no;
+      select seats into tseat from train where tno = trainno;
+      case choice
+             when '1' then
+                      tseat := tseat-no;
+                      update train set seats = tseat where tno = trainno;
+             when '2' then
+                      tseat := tseat+no;
+                      update train set seats = tseat where tno = trainno;
+  end case;
+end;
+/                                         
+run
+----
+create table train(tno number(5) primary key,tname varchar(15),tdate date,destination varchar(15),seats number(3));
+
+insert into train values(1,'passenger','21-01-2022','thirunelveli',23);
+insert into train values(2,'jana','23-02-2022','manali',23);
+insert into train values(3,'chennai','11-01-2022','rajasthan',23);
+insert into train values(4,'dhur','1-10-2021','koorg',23);
+
+select * from train;
+
+@/home/csdb06/qwerty/exp13train.sql
+
+select * from train;
+
+@/home/csdb06/qwerty/exp13btrain.sql
+
+14)
+
+CREATE OR REPLACE PACKAGE e_pack AS
+	PROCEDURE addEmp(e_id emplo.eid%type,
+	e_name emplo.ename%type,
+	e_addr emplo.eaddress%type,
+	e_sal emplo.esalary%type);
+
+	PROCEDURE delEmp(e_id emplo.eid%type);
+
+	PROCEDURE listEmp;
+
+	FUNCTION retSal (x in number) return number;
+END e_pack;
+/
+-------------------------------------------------------------------------
+
+SET SERVEROUTPUT ON
+CREATE OR REPLACE PACKAGE BODY e_pack AS
+	PROCEDURE addEmp(e_id emplo.eid%type,
+	e_name emplo.ename%type,
+	e_addr emplo.eaddress%type,
+	e_sal emplo.esalary%type)
+	IS
+	BEGIN
+		INSERT INTO emplo(eid,ename,eaddress,esalary) VALUES(e_id,e_name,e_addr,e_sal);
+	END addEmp;
+
+	PROCEDURE delEmp(e_id emplo.eid%type)
+	IS
+	BEGIN
+		DELETE FROM emplo WHERE eid=e_id;
+	END delEmp;
+
+	PROCEDURE listEmp
+	IS
+	CURSOR e_emp IS SELECT ename FROM emplo;
+	TYPE e_list IS TABLE OF emplo.ename%type;
+	name_list e_list := e_list();
+	counter integer := 0;
+	BEGIN
+		FOR n IN e_emp LOOP
+			counter := counter+1;
+			name_list.extend;
+			name_list(counter) := n.ename;
+			dbms_output.put_line('Employee ('||counter||') = '||name_list(counter));
+		END LOOP;
+	END listEmp;
+
+	FUNCTION retSal (x in number) RETURN number
+	IS
+	sal number(5) := 0;
+	BEGIN
+		SELECT esalary INTO sal FROM emplo WHERE eid=x;
+		dbms_output.put_line(sal);
+		RETURN sal;
+	END retSal;
+END e_pack;
+/
+
+==================================================================
+
+accept x number prompt 'Enter employee ID of whose salary you want to display: ' 
+DECLARE
+	code emplo.eid%type;
+	salary emplo.esalary%type;
+BEGIN
+	code := &x;
+	e_pack.addEmp(4,'ABC','XYZ',4000);
+	e_pack.addEmp(5,'BC','YZ',5000);
+	e_pack.listEmp;
+	e_pack.delEmp(5);
+	e_pack.listEmp;
+	salary := e_pack.retSal(code);
+END;
+/
