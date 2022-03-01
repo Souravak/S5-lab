@@ -9,6 +9,7 @@ int main(){
     optab = fopen("optab.txt", "r");
     output = fopen("output.txt", "w");
     symbol = fopen("symbol.txt", "w");
+	
     fscanf(input, "%s\t%s\t%s", label, opcode, operand);
 	if(strcmp(opcode, "START") == 0){
 		start = atoi(operand);
