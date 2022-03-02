@@ -69,7 +69,7 @@ void main()
             staddr[a] = '\0';
             staddr1 = strtol(staddr, NULL, 16);
             i = 12;
-            while (line[i] != '\0')
+            while (line[i] != '\0') 
             {
                 if (line[i] != '^')
                 {
